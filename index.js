@@ -307,29 +307,34 @@ const fs=require("fs");
 //     });
 // });
 
-const port= process.env.port || 8080;
+const port = process.env.port || 8000;
 
-const server=http.createServer((req,res)=>
-{
-    if(req.url=="/")
+
+const server = http.createServer((req,res)=>{
+    if(req.url=='/'|| req.url=='/index.html')
     {
-        fs.readFile("IIndex.html","utf8",(err,data)=>
-        {
-            if (err) console.log(err.message);
+        fs.readFile(`IIndex.html`,'utf8',(err,data)=>{
+            if(err)
+            {
+                console.log(err.message);
+            }
+
             res.statusCode=200;
             res.setHeader("Content-type","text/html");
             res.write(data);
             res.end();
         });
     }
+    
 
-    else if(req.url=='/about')
+    if(req.url=='/about.html')
     {
-        fs.readFile("about.html","utf8",(err,data)=>{
+        fs.readFile('about.html','utf8',(err,data)=>{
             if(err)
             {
                 console.log(err.message);
             }
+
             res.statusCode=200;
             res.setHeader("Content-type","text/html");
             res.write(data);
@@ -339,7 +344,7 @@ const server=http.createServer((req,res)=>
 });
 
 server.listen(port,()=>{
-    console.log(`Server has started in the port ${port}`);
+    console.log(`The server has started in the port ${port}`);
 });
 
 //END OF HTTP MODULE
