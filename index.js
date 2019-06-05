@@ -26,8 +26,8 @@
 
 //FILESYSTEM MODULE   ========> Practice this module by uncommenting each of it's method
 
-// const fs=require('fs');
-// const os=require('os');
+const fs=require('fs');
+const os=require('os');
 
 //METHOD-1
 
@@ -127,12 +127,81 @@
 //     }
 // });
 
+//METHOD-8   ====> Read Directory (readdir) is a function to list all the file and folder present inside the pointing folder in the form of an array
+
+// fs.readdir(os.homedir()+"os.homedir()+"\\Desktop\\testing",'utf8',(err,file)=>{
+//     if(err)
+//     {
+//         console.log(err.message);
+//     }
+
+//     else
+//     {
+//         console.log(file);
+//     }
+// });
+
+
+//Method-9   ===> fs.stat is a function to describe weather the pointing element is a file or a folder
+
+// fs.stat(os.homedir()+"\\Desktop\\testing", (err, stats)=> {
+ 
+//     if (stats.isFile()) {
+//         console.log('    file');
+//     }
+//     if (stats.isDirectory()) {
+//         console.log('    directory');
+//     }
+// });
+
+//Method 10 ===> To list the file and directory inside the testing folder and segregate the files and folder 
+
+// const dir = os.homedir()+"\\Desktop\\testing";
+
+// fs.readdir(dir,(err,file)=>{
+//     if(err)
+//     {
+//         console.log(err.message);
+//     }
+
+//     else
+//     {
+        
+//         file.forEach(function (f)
+//         {
+            
+//             fs.stat(dir+"\\"+f,(err,stats)=>{
+//                 if(err)
+//                 {
+//                     console.log(err)
+//                 }
+
+//                 else
+//                 {
+//                     if(stats.isFile())
+//                     {
+//                         console.log(f+"====>This is a file");
+//                     }
+
+//                     else if (stats.isDirectory())
+//                     {
+//                         console.log(f+"====>This is a directory");
+//                     }
+//                 }
+//             });
+//         });
+//     }
+// });
+
+
+// End of fs Module
+
 //URL MODULE
 
 // const url = require('url');
 
 // const ExampleUrl=new URL("https://Username:Pass@example.com:8080/index.html?id=100&status=active#hash");
-// //In the above line the url has been parsed from string to an url 
+// //In the above line the string is parsed to an url 
 
 // //The above method can also be done as follows
 
@@ -282,9 +351,9 @@
 
 //START OF HTTP MODULE
 
-const http = require("http");
-const path=require("path");
-const fs=require("fs");
+// const http = require("http");
+// const path=require("path");
+// const fs=require("fs");
 
 // const port = process.env.port|| 3000;
 // const hostname='127.0.0.1';
@@ -307,45 +376,47 @@ const fs=require("fs");
 //     });
 // });
 
-const port = process.env.port || 8000;
+// const port = process.env.port || 8000;
 
 
-const server = http.createServer((req,res)=>{
-    if(req.url=='/'|| req.url=='/index.html')
-    {
-        fs.readFile(`IIndex.html`,'utf8',(err,data)=>{
-            if(err)
-            {
-                console.log(err.message);
-            }
+// const server = http.createServer((req,res)=>{
+//     if(req.url=='/'|| req.url=='/index.html')
+//     {
+//         fs.readFile(`IIndex.html`,'utf8',(err,data)=>{
 
-            res.statusCode=200;
-            res.setHeader("Content-type","text/html");
-            res.write(data);
-            res.end();
-        });
-    }
+//             if(err)
+//             {
+//                 console.log(err.message);
+//             }
+            
+//             res.statusCode=200;
+//             res.setHeader("Content-type","text/html");
+//             res.write(data);
+//             res.end();
+//         });
+//     }
     
 
-    if(req.url=='/about.html')
-    {
-        fs.readFile('about.html','utf8',(err,data)=>{
-            if(err)
-            {
-                console.log(err.message);
-            }
+//     if(req.url=='/about.html')
+//     {
+//         fs.readFile('about.html','utf8',(err,data)=>{
+//             if(err)
+//             {
+//                 console.log(err.message);
+//             }
 
-            res.statusCode=200;
-            res.setHeader("Content-type","text/html");
-            res.write(data);
-            res.end();
-        });
-    }
-});
+//             res.statusCode=200;
+//             res.setHeader("Content-type","text/html");
+//             res.write(data);
+//             res.end();
+//         });
+//     }
+// });
 
-server.listen(port,()=>{
-    console.log(`The server has started in the port ${port}`);
-});
+// server.listen(port,()=>{
+//     console.log(`The server has started in the port ${port}`);
+// });
+
 
 //END OF HTTP MODULE
 
